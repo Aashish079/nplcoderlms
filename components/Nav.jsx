@@ -81,9 +81,6 @@ const Nav = () => {
                   <span className="text-gray-900 dark:text-white font-bold text-lg hidden md:inline">
                     NPLCoder
                   </span>
-                  <span className="text-gray-900 dark:text-white font-bold text-lg hidden md:inline ml-1">
-                    LMS
-                  </span>
                 </div>
               </Link>
 

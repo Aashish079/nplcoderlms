@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className="font-verdana antialiased">
+        <body className="font-verdana antialiased" suppressHydrationWarning>
           <ThemeProvider>
             <Nav />
             <div className="pt-20">
