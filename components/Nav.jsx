@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
 import ModeToggle from "./modeswitch";
 
 const Nav = () => {
@@ -104,6 +105,14 @@ const Nav = () => {
               </div>
 
               <div className="flex items-center space-x-2 md:space-x-4">
+                <UserButton
+                  afterSignOutUrl="/login"
+                  appearance={{
+                    elements: {
+                      avatarBox: 'w-10 h-10',
+                    },
+                  }}
+                />
                 <ModeToggle />
 
                 <button

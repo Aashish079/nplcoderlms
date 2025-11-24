@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <SignedIn>{redirect('/dashboard')}</SignedIn>
+      <SignedIn>{redirect('/workspace')}</SignedIn>
       <SignedOut>
         <main className="min-h-screen bg-white dark:bg-[#24293d]">
           <section className="py-20 px-4">
