@@ -10,6 +10,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Provider from "./provider"
 
 export const metadata = {
   metadataBase: new URL('https://lms.nplcoder.org'),
@@ -72,7 +73,9 @@ export default function RootLayout({ children }) {
           <ThemeProvider>
             <Nav />
             <div className="pt-20">
+              <Provider>
               {children}
+              </Provider>
             </div>
             <Footer />
           </ThemeProvider>

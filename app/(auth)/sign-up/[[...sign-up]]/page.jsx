@@ -3,7 +3,7 @@ import CodeBlock from '@/components/CodeBlock'
 
 export default function Page() {
   return (
-    <div className='flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800'>
+    <div className='flex min-h-screen items-center justify-center bg-gradient-to-br p-4 dark:from-gray-900 dark:to-gray-800'>
       <div className='flex w-full max-w-6xl gap-8'>
         <div className='flex flex-1 items-center justify-center'>
           <SignUp />

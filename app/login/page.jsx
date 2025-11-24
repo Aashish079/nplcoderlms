@@ -7,7 +7,7 @@ export default function LoginPage() {
     <>
       <SignedIn>{redirect('/dashboard')}</SignedIn>
       <SignedOut>
-        <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4 dark:from-gray-900 dark:to-gray-800">
           <div className="w-full max-w-md space-y-8 rounded-2xl bg-white p-8 shadow-2xl dark:bg-gray-800">
             {/* Logo/Brand Section */}
             <div className="text-center">
