@@ -1,4 +1,5 @@
 import { boolean, integer, pgTable, varchar, json } from "drizzle-orm/pg-core"
+import { LucideEqualApproximately } from "lucide-react";
 
 export const usersTable = pgTable("users", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
