@@ -1,5 +1,5 @@
 import { SignUp } from '@clerk/nextjs'
-import CodeBlock from '@/components/CodeBlock'
+import CodeBlock from '@/components/Codeblock'
 
 export default function Page() {
   return (
