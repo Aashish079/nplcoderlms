@@ -1,10 +1,12 @@
 "use client"
 import { useState } from 'react'
+import axios from 'axios'
 import * as Dialog from '@radix-ui/react-dialog'
-import { X, Sparkles } from 'lucide-react'
+import { X, Sparkles, Loader2Icon } from 'lucide-react'
 
 export default function AddNewCourseDialog({ children, onCourseCreate }) {
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     courseName: '',
     description: '',
@@ -22,30 +24,46 @@ export default function AddNewCourseDialog({ children, onCourseCreate }) {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validate required fields
     if (!formData.courseName || !formData.chapters || !formData.difficulty || !formData.category) {
       alert('Please fill in all required fields')
       return
     }
 
-    // Call the parent handler
-    if (onCourseCreate) {
-      onCourseCreate(formData)
-    }
+    // Generate the course
+    await onGenerate()
+  }
 
-    // Reset form and close dialog
-    setFormData({
-      courseName: '',
-      description: '',
-      chapters: '',
-      includeVideo: false,
-      difficulty: '',
-      category: ''
-    })
-    setOpen(false)
+  const onGenerate = async () => {
+    console.log(formData);
+    setLoading(true);
+    try {
+      const result = await axios.post('/api/generate-course-layout', {...formData});
+
+      // Call the parent handler with the result
+      if (onCourseCreate) {
+        onCourseCreate(result.data)
+      }
+
+      // Reset form and close dialog on success
+      setFormData({
+        courseName: '',
+        description: '',
+        chapters: '',
+        includeVideo: false,
+        difficulty: '',
+        category: ''
+      })
+      setOpen(false)
+    } catch (err) {
+      console.error(err);
+      alert('Failed to generate course. Please try again.')
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -172,10 +190,11 @@ export default function AddNewCourseDialog({ children, onCourseCreate }) {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-[#DC143C] to-[#003893] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+              disabled={loading}
+              className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-[#DC143C] to-[#003893] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Sparkles className="h-5 w-5" />
-              Generate Course
+              {loading ? <Loader2Icon className="animate-spin h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
+              {loading ? 'Generating...' : 'Generate Course'}
             </button>
           </form>
         </Dialog.Content>
